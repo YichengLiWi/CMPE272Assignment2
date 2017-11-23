@@ -28,9 +28,9 @@ docker run -it --rm --name lab1-client -v "$PWD":/usr/src/myapp -w /usr/src/myap
 ```
 
 ### Expected Output on Client
-
+```sh
 Client is connecting to Server at 192.168.0.1:3000...
-## replicate
+replicate
 put value is b  key is  0
 put value is b a key is  1
 put value is b aa key is  2
@@ -42,9 +42,10 @@ put value is b aaaaa key is  5
 put value is b aaaaaa key is  6
 delete value is  key is  2
 [(b'\x03', b'b aaa'), (b'\x04', b'b aaaa'), (b'\x05', b'b aaaaa'), (b'\x06', b'b aaaaaa')]
+```
 
 ### Expected Output on Master
-
+```sh
 Server started at...3000
-master update: 
-[(b'\x03', b'b aaa'), (b'\x04', b'b aaaa'), (b'\x05', b'b aaaaa'), (b'\x06', b'b aaaaaa')
+master update: [(b'\x03', b'b aaa'), (b'\x04', b'b aaaa'), (b'\x05', b'b aaaaa'), (b'\x06', b'b aaaaaa')
+```
