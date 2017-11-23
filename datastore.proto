@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message Request {
+    string data = 1;
+    int32 counter = 2;
+}
+
+message Response {
+    string cmd = 1;
+    int32 key = 2;
+    string value = 3;
+    int32 counter = 4;
+    string data = 5;
+}
+
+
+service Datastore{
+   rpc masterUpdate(Request) returns (stream Response) {}
+}
