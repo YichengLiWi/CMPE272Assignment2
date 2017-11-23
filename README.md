@@ -1,13 +1,9 @@
 ### Requirements
 
-Implement a key-value store gRPC service using [RocksDB](https://pypi.python.org/pypi/python-rocksdb).
+Implement one way replicator using grpc [RocksDB]
+(https://docs.google.com/drawings/d/1JEVSYzanWRfTLytnvP45IPuz9xpAf6SdlwHr0Hpjb8Q/edit)
+(https://pypi.python.org/pypi/python-rocksdb).
 
-### Running Python scripts via Docker
-
-* RocksDB native - https://github.com/facebook/rocksdb/blob/master/INSTALL.md
-* gRPC Docker - https://github.com/grpc/grpc-docker-library/tree/master/1.4/python
-
-OR
 
 Create a Docker image using [this example](https://github.com/sithu/cmpe273-fall17/tree/master/docker).
 
@@ -33,10 +29,22 @@ docker run -it --rm --name lab1-client -v "$PWD":/usr/src/myapp -w /usr/src/myap
 
 ### Expected Output on Client
 
-```sh
 Client is connecting to Server at 192.168.0.1:3000...
-## PUT Request: value = foo
-## PUT Response: key = 3f8a2ec27bc44423ba2488801cfa1b94
-## GET Request: key = 3f8a2ec27bc44423ba2488801cfa1b94
-## GET Response: value = foo
-```
+## replicate
+put value is b  key is  0
+put value is b a key is  1
+put value is b aa key is  2
+delete value is  key is  0
+put value is b aaa key is  3
+put value is b aaaa key is  4
+delete value is  key is  1
+put value is b aaaaa key is  5
+put value is b aaaaaa key is  6
+delete value is  key is  2
+[(b'\x03', b'b aaa'), (b'\x04', b'b aaaa'), (b'\x05', b'b aaaaa'), (b'\x06', b'b aaaaaa')]
+
+### Expected Output on Master
+
+Server started at...3000
+master update: 
+[(b'\x03', b'b aaa'), (b'\x04', b'b aaaa'), (b'\x05', b'b aaaaa'), (b'\x06', b'b aaaaaa')
